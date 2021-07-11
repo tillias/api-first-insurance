@@ -1,0 +1,27 @@
+asyncapi: '2.1.0'
+info:
+  title: Payment Service
+  version: 1.0.0
+  description: This service performs payment processing for insurance claim
+channels:
+  claim/accepted:
+    publish:
+      message:
+        $ref: '#/components/messages/ClaimAccepted'
+components:
+  messages:
+    ClaimAccepted:
+      payload:
+        type: object
+        properties:
+          claimId:
+            type: string
+            description: Id of a claim
+          email:
+            type: string
+            format: email
+            description: Official in charge
+        example: {
+          claimId: ABC-123,
+          email: john-doe@foo.com
+        }
