@@ -17,5 +17,12 @@
       "type": "string",
       "description": "Reason for rejection"
     }
-  }
+  },
+  "examples": [
+    {
+      "claimId": "ABC-123",
+      "email": "john-doe@foo.com",
+      "reason": "Client provided invalid insurance policy number"
+    }
+  ]
 }

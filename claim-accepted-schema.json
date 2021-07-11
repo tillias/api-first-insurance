@@ -13,5 +13,11 @@
       "format": "email",
       "description": "Official in charge"
     }
-  }
+  },
+  "examples": [
+    {
+      "claimId": "ABC-123",
+      "email": "john-doe@foo.com"
+    }
+  ]
 }
