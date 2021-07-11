@@ -1,0 +1,21 @@
+{
+  "$id": "https://raw.githubusercontent.com/tillias/api-first-insurance/main/claim-rejected-schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ClaimAccepted",
+  "type": "object",
+  "properties": {
+    "claimId": {
+      "type": "string",
+      "description": "Id of a claim"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Official in charge"
+    },
+    "reason": {
+      "type": "string",
+      "description": "Reason for rejection"
+    }
+  }
+}
