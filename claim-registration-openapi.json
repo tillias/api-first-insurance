@@ -1,0 +1,38 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Claim Registration API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/register": {
+      "post": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Claim"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Returned if claim has been successfully registered"
+          }
+        },
+        "operationId": "register",
+        "summary": "Register insurance claim"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Claim": {
+        "description": "",
+        "type": "object"
+      }
+    }
+  }
+}
