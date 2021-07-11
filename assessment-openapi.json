@@ -1,0 +1,120 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Assessment API",
+    "version": "1.0.0",
+    "description": "Used to assess (validate) insurance claim(s)"
+  },
+  "paths": {
+    "/assess/{claimId}": {
+      "post": {
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Assessment"
+                },
+                "examples": {
+                  "Samle assessment": {
+                    "value": {
+                      "assessmentId": "ASSESS-123"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "Returned if assessment was successfully started"
+          }
+        },
+        "operationId": "assess",
+        "summary": "Start assessment (validation) of the claim"
+      },
+      "parameters": [
+        {
+          "examples": {
+            "Example Claim": {
+              "value": "\"ABC-123\""
+            }
+          },
+          "name": "claimId",
+          "description": "Claim Id to be validated",
+          "schema": {
+            "type": "string"
+          },
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    "/status/{assessmentId}": {
+      "summary": "Checks status of assessment",
+      "get": {
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "enum": [
+                    "Pending",
+                    "Running",
+                    "Finished",
+                    "Error"
+                  ],
+                  "type": "string"
+                },
+                "examples": {
+                  "Pending status": {
+                    "value": "\"Pending\""
+                  },
+                  "Running status": {
+                    "value": "\"Running\""
+                  }
+                }
+              }
+            },
+            "description": "If assessment was found"
+          }
+        },
+        "operationId": "status",
+        "summary": "Check status of assessment"
+      },
+      "parameters": [
+        {
+          "examples": {
+            "Example assessment id": {
+              "value": "\"ASSESS-123\""
+            }
+          },
+          "name": "assessmentId",
+          "description": "Id of assessment",
+          "schema": {
+            "type": "string"
+          },
+          "in": "path",
+          "required": true
+        }
+      ]
+    }
+  },
+  "components": {
+    "schemas": {
+      "Assessment": {
+        "description": "",
+        "required": [
+          "assessmentId"
+        ],
+        "type": "object",
+        "properties": {
+          "assessmentId": {
+            "description": "Represents assessment number for particular insurance claim. User can use this to check status of assessment",
+            "type": "string"
+          }
+        },
+        "example": {
+          "assessmentId": "ASSESS-123"
+        }
+      }
+    }
+  }
+}

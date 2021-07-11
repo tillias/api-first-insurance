@@ -1,0 +1,50 @@
+asyncapi: '2.1.0'
+info:
+  title: Assessment Service
+  version: 1.0.0
+  description: This service is in charge of assessment process
+channels:
+  claim/accepted:
+    subscribe:
+      message:
+        $ref: '#/components/messages/ClaimAccepted'
+  claim/rejected:
+    subscribe:
+      message:
+        $ref: '#/components/messages/ClaimRejected'
+components:
+  messages:
+    ClaimAccepted:
+      payload:
+        type: object
+        properties:
+          claimId:
+            type: string
+            description: Id of a claim
+          email:
+            type: string
+            format: email
+            description: Official in charge
+        example: {
+          claimId: ABC-123,
+          email: john-doe@foo.com
+        }
+    ClaimRejected:
+      payload:
+        type: object
+        properties:
+          claimId:
+            type: string
+            description: Id of a claim
+          email:
+            type: string
+            format: email
+            description: Official in charge
+          reason:
+            type: string
+            description: Reason of rejection
+        example: {
+          claimId: ABC-123,
+          email: john-doe@foo.com,
+          reason: Client provided invalid insurance policy number
+        }
