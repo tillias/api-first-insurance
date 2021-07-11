@@ -19,6 +19,13 @@
         },
         "responses": {
           "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Registration"
+                }
+              }
+            },
             "description": "Returned if claim has been successfully registered"
           }
         },
