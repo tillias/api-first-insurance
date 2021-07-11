@@ -32,6 +32,59 @@
         "operationId": "register",
         "summary": "Register insurance claim"
       }
+    },
+    "/claim/{claimId}": {
+      "get": {
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Claim"
+                },
+                "examples": {
+                  "Example Claim": {
+                    "value": {
+                      "insuranceId": "ABC-456",
+                      "timestamp": "2018-02-10T09:30Z",
+                      "description": "Some claim"
+                    }
+                  },
+                  "Example Claim 2": {
+                    "value": {
+                      "insuranceId": "ABC-789",
+                      "timestamp": "2018-02-10T09:30Z",
+                      "description": "Yet another claim"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "If Claim with given id is found"
+          },
+          "404": {
+            "description": "If no claim for give id is available"
+          }
+        },
+        "operationId": "getClaim",
+        "summary": "Get Claim by Id"
+      },
+      "parameters": [
+        {
+          "examples": {
+            "Example Claim Id": {
+              "value": "\"ABC-123\""
+            }
+          },
+          "name": "claimId",
+          "description": "Id of a claim",
+          "schema": {
+            "type": "string"
+          },
+          "in": "path",
+          "required": true
+        }
+      ]
     }
   },
   "components": {
@@ -60,7 +113,7 @@
           }
         },
         "example": {
-          "insuranceId": "ABC123",
+          "insuranceId": "ABC-123",
           "timestamp": "2018-02-10T09:30Z",
           "description": "My car was damaged because of flooding"
         }
