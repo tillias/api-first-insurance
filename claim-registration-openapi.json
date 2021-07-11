@@ -31,7 +31,48 @@
     "schemas": {
       "Claim": {
         "description": "",
-        "type": "object"
+        "required": [
+          "insuranceId",
+          "timestamp",
+          "description"
+        ],
+        "type": "object",
+        "properties": {
+          "insuranceId": {
+            "description": "",
+            "type": "string"
+          },
+          "timestamp": {
+            "format": "date-time",
+            "description": "",
+            "type": "string"
+          },
+          "description": {
+            "description": "",
+            "type": "string"
+          }
+        },
+        "example": {
+          "insuranceId": "ABC123",
+          "timestamp": "2018-02-10T09:30Z",
+          "description": "My car was damaged because of flooding"
+        }
+      },
+      "Registration": {
+        "description": "",
+        "required": [
+          "claimId"
+        ],
+        "type": "object",
+        "properties": {
+          "claimId": {
+            "description": "",
+            "type": "string"
+          }
+        },
+        "example": {
+          "claimId": "CLAIM-123"
+        }
       }
     }
   }
