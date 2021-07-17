@@ -2,10 +2,10 @@ asyncapi: '2.1.0'
 info:
   title: Notification API
   version: 1.0.0
-  description: This service performs payment processing for insurance claim
+  description: notifies insurance holder if insurance claim was rejected by insurer
 channels:
   claim/accepted:
     publish:
       message:
         payload:
-          $ref: 'https://raw.githubusercontent.com/tillias/api-first-insurance/main/claim-accepted-schema.json'
+          $ref: 'https://raw.githubusercontent.com/tillias/api-first-insurance/main/claim-rejected-schema.json'
