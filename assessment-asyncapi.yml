@@ -7,16 +7,10 @@ channels:
   claim/accepted:
     subscribe:
       message:
-        $ref: '#/components/messages/ClaimAccepted'
+        payload:
+          $ref: 'https://raw.githubusercontent.com/tillias/api-first-insurance/main/claim-accepted-schema.json'
   claim/rejected:
     subscribe:
       message:
-        $ref: '#/components/messages/ClaimRejected'
-components:
-  messages:
-    ClaimAccepted:
-      payload:
-        $ref: 'https://raw.githubusercontent.com/tillias/api-first-insurance/main/claim-accepted-schema.json'
-    ClaimRejected:
-      payload:
-        $ref: 'https://raw.githubusercontent.com/tillias/api-first-insurance/main/claim-rejected-schema.json'
+        payload:
+          $ref: 'https://raw.githubusercontent.com/tillias/api-first-insurance/main/claim-rejected-schema.json'

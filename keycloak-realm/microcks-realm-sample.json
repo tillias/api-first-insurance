@@ -1,0 +1,106 @@
+{
+  "id": "microcks",
+  "realm": "microcks",
+  "displayName": "Microcks",
+  "enabled": true,
+  "sslRequired": "none",
+  "registrationAllowed": false,
+  "users" : [
+    {
+      "username" : "admin",
+      "enabled": true,
+      "credentials" : [
+        { "type" : "password",
+          "value" : "microcks123" }
+      ],
+      "realmRoles": [],
+      "applicationRoles": {
+        "realm-management": [ "manage-users", "manage-clients" ],
+        "account": [ "manage-account" ],
+        "microcks-app": [ "admin "]
+      }
+    }
+  ],
+  "roles": {
+    "realm": [],
+    "client": {
+      "microcks-app": [
+        {
+          "name": "user",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "microcks"
+        },
+        {
+          "name": "admin",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "microcks"
+        },
+        {
+          "name": "manager",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "microcks"
+        }
+      ]
+    }
+  },
+  "defaultRoles": [],
+  "requiredCredentials": [ "password" ],
+  "scopeMappings": [],
+  "clientScopeMappings": {
+    "microcks-app": [
+      {
+        "client": "microcks-app-js",
+        "roles": [
+          "manager",
+          "admin",
+          "user"
+        ]
+      }
+    ],
+    "realm-management": [
+      {
+        "client": "microcks-app-js",
+        "roles": [
+          "manage-users",
+          "manage-clients"
+        ]
+      }
+    ]
+  },
+  "applications": [
+    {
+      "name": "microcks-app",
+      "enabled": true,
+      "bearerOnly": true,
+      "defaultRoles": [
+        "user"
+      ]
+    },
+    {
+      "name": "microcks-app-js",
+      "enabled": true,
+      "publicClient": true,
+      "webOrigins": [
+        "+"
+      ],
+      "redirectUris": [
+        "http://localhost:8080/*"
+      ],
+      "fullScopeAllowed": false
+    },
+    {
+      "name": "microcks-serviceaccount",
+      "enabled": true,
+      "bearerOnly": false,
+      "publicClient": false,
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": true,
+      "clientAuthenticatorType": "client-secret"
+    }
+  ],
+  "keycloakVersion": "10.0.1"
+}
