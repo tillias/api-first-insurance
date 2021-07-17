@@ -27,11 +27,23 @@ paths:
               schema:
                 $ref: '#/components/schemas/RateChange'
               examples:
-                Sample rate change:
+                Increase rate change:
                   value:
                     increase: true
                     currency: Euro
                     amount: '15.5'
+                    claimId: ABC-123
+                Decrease rate change:
+                  value:
+                    increase: false
+                    currency: Euro
+                    ammount: '5.4'
+                    claimId: ABC-123
+                Rate not changed:
+                  value:
+                    increase: false
+                    currency: Euro
+                    ammount: '0.0'
                     claimId: ABC-123
           description: If validation was successful
       operationId: validatePremiums

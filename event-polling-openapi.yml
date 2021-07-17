@@ -1,0 +1,43 @@
+openapi: 3.0.2
+info:
+  title: Event Polling API
+  version: 1.0.0
+  description: 'Provides methods of polling event broker for events '
+paths:
+  /events/claims/accepted:
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: 'https://raw.githubusercontent.com/tillias/api-first-insurance/main/claim-accepted-schema.json'
+              examples:
+                Sample request:
+                  value:
+                    claimId: ABC-123
+                    email: john.doe@foo.com
+          description: If event is available
+        '404':
+          description: No events available
+      operationId: claimAccepted
+      summary: Polls for ClaimAccepted event
+  /events/claims/rejected:
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: 'https://raw.githubusercontent.com/tillias/api-first-insurance/main/claim-rejected-schema.json'
+              examples:
+                Sample request:
+                  value:
+                    claimId: ABC-123
+                    email: john.doe@foo.com
+                    reason: Client provided invalid insurance policy number
+          description: If event is available
+        '404':
+          description: No events available
+      operationId: claimRejected
+      summary: Polls for ClaimRejected event
