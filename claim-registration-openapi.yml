@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: Claim Registration API
-  version: 1.0.0
+  version: 1.1.0
 paths:
   /register:
     post:
@@ -10,6 +10,12 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Claim'
+            examples:
+              Example Claim:
+                value:
+                  insuranceId: ABC-456
+                  timestamp: '2018-02-10T09:30Z'
+                  description: Some claim
         required: true
       responses:
         '200':
@@ -17,11 +23,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Registration'
+              examples:
+                Some Registration:
+                  value:
+                    claimId: CLAIM-123
           description: Returned if claim has been successfully registered
       operationId: register
       summary: Register insurance claim
-  '/claim/{claimId}':
+  /claim:
     get:
+      parameters:
+        -
+          examples:
+            Example Claim Id:
+              value: ABC-123
+          name: claimId
+          description: Id of a claim
+          schema:
+            type: string
+          in: path
+          required: true
       responses:
         '200':
           content:
@@ -34,25 +55,21 @@ paths:
                     insuranceId: ABC-456
                     timestamp: '2018-02-10T09:30Z'
                     description: Some claim
-                Example Claim 2:
-                  value:
-                    insuranceId: ABC-789
-                    timestamp: '2018-02-10T09:30Z'
-                    description: Yet another claim
           description: If Claim with given id is found
         '404':
           description: If no claim for give id is available
       operationId: getClaim
       summary: Get Claim by Id
     parameters:
-      - examples:
-          Example Claim Id:
+      -
+        examples:
+          Example Claim:
             value: '"ABC-123"'
         name: claimId
-        description: Id of a claim
+        description: ''
         schema:
           type: string
-        in: path
+        in: query
         required: true
 components:
   schemas:

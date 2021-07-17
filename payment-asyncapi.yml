@@ -7,21 +7,5 @@ channels:
   claim/accepted:
     publish:
       message:
-        $ref: '#/components/messages/ClaimAccepted'
-components:
-  messages:
-    ClaimAccepted:
-      payload:
-        type: object
-        properties:
-          claimId:
-            type: string
-            description: Id of a claim
-          email:
-            type: string
-            format: email
-            description: Official in charge
-        example: {
-          claimId: ABC-123,
-          email: john-doe@foo.com
-        }
+        payload:
+          $ref: 'https://raw.githubusercontent.com/tillias/api-first-insurance/main/claim-accepted-schema.json'

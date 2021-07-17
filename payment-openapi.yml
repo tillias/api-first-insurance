@@ -1,0 +1,99 @@
+openapi: 3.0.2
+info:
+  title: Payment API
+  version: 1.0.0
+  description: |-
+    This API provides methods of:
+    - calculating payment amount
+    - perform payment
+paths:
+  /amount:
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Amount'
+              examples:
+                Sample amount:
+                  value:
+                    currency: Euro
+                    amount: '225.5'
+          description: 'If claim is available, valid and amount is calculated'
+      operationId: calculateAmount
+      summary: Calculates payment amount for a given claim
+    parameters:
+      -
+        examples:
+          Sample claimId:
+            value: '"ABC-123"'
+        name: claimId
+        schema:
+          type: string
+        in: query
+        required: true
+  /payment:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Payment'
+            examples:
+              Example payment:
+                value:
+                  insuranceId: INS-123
+                  claimId: ABC-123
+                  amount:
+                    currency: Euro
+                    amount: '255.5'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: string
+              examples:
+                Transaction id:
+                  value: TRANSACTION-7f681d66-1767-4fa6-b6bc-208cd74f59a6
+          description: Returned if payment was successful
+      operationId: executePayment
+      summary: Performs payment
+components:
+  schemas:
+    Amount:
+      required:
+        - currency
+        - amount
+      type: object
+      properties:
+        currency:
+          type: string
+        amount:
+          type: string
+      example:
+        currency: Euro
+        amount: '225.5'
+    Payment:
+      required:
+        - insuranceId
+        - claimId
+        - amount
+      type: object
+      properties:
+        insuranceId:
+          description: 'Use to identify payment recipient '
+          type: string
+        claimId:
+          type: string
+        amount:
+          $ref: '#/components/schemas/Amount'
+          description: ''
+      example:
+        insuranceId: INS-123
+        claimId: ABC-123
+        amount:
+          currency: Euro
+          amount: '255.5'

@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   description: Used to assess (validate) insurance claim(s)
 paths:
-  '/assess/{claimId}':
+  /assess:
     post:
       responses:
         '200':
@@ -20,18 +20,30 @@ paths:
       operationId: assess
       summary: Start assessment (validation) of the claim
     parameters:
-      - examples:
+      -
+        examples:
           Example Claim:
             value: '"ABC-123"'
         name: claimId
         description: Claim Id to be validated
         schema:
           type: string
-        in: path
+        in: query
         required: true
-  '/status/{assessmentId}':
+  /status:
     summary: Checks status of assessment
     get:
+      parameters:
+        -
+          examples:
+            Example assessment id:
+              value: '"ASSESS-123"'
+          name: assessmentId
+          description: Id of assessment
+          schema:
+            type: string
+          in: query
+          required: true
       responses:
         '200':
           content:
@@ -52,14 +64,15 @@ paths:
       operationId: status
       summary: Check status of assessment
     parameters:
-      - examples:
+      -
+        examples:
           Example assessment id:
-            value: '"ASSESS-123"'
+            value: '"ASS-123"'
         name: assessmentId
         description: Id of assessment
         schema:
           type: string
-        in: path
+        in: query
         required: true
 components:
   schemas:
@@ -70,7 +83,9 @@ components:
       type: object
       properties:
         assessmentId:
-          description: Represents assessment number for particular insurance claim. User can use this to check status of assessment
+          description: >-
+            Represents assessment number for particular insurance claim. User can use this to
+            check status of assessment
           type: string
       example:
         assessmentId: ASSESS-123
