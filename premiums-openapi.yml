@@ -1,0 +1,92 @@
+openapi: 3.0.2
+info:
+  title: Premiums API
+  version: 1.0.0
+  description: |-
+    Enables following capabilities:
+    - Checking if future rates for particular insurance holder should be changed
+    - Change future insurance premiums
+paths:
+  /premiums/validate:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: 'https://raw.githubusercontent.com/tillias/api-first-insurance/main/claim-accepted-schema.json'
+            examples:
+              Sample request:
+                value:
+                  claimId: ABC-123
+                  email: john.doe@foo.com
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateChange'
+              examples:
+                Sample rate change:
+                  value:
+                    increase: true
+                    currency: Euro
+                    amount: '15.5'
+                    claimId: ABC-123
+          description: If validation was successful
+      operationId: validatePremiums
+      summary: Checks if future rates for a particular insurance holder should be changed
+      description: |-
+        If insurance claim if valid and accepted by insurer, it may affect future premiums.
+        In most cases it is some increase in monthly payments.
+  /premiums:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RateChange'
+            examples:
+              Sample rate change:
+                value:
+                  increase: true
+                  currency: Euro
+                  amount: '15.5'
+                  claimId: ABC-123
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: string
+              examples:
+                New rate:
+                  value: '"100.3"'
+          description: if premiums are changed
+      operationId: changePremiums
+      summary: Adjust future premiums
+components:
+  schemas:
+    RateChange:
+      required:
+        - increase
+        - currency
+        - amount
+        - claimId
+      type: object
+      properties:
+        increase:
+          description: true if future premiums will be bigger
+          type: boolean
+        currency:
+          type: string
+        amount:
+          type: string
+        claimId:
+          type: string
+      example:
+        increase: true
+        currency: Euro
+        amount: '15.5'
+        claimId: ABC-123
