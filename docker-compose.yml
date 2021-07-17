@@ -75,6 +75,9 @@ services:
       - SERVICES_UPDATE_INTERVAL=0 0 0/2 * * *
       - KEYCLOAK_URL=http://keycloak:8080/auth
       - KEYCLOAK_PUBLIC_URL=http://localhost:18080/auth
-      - KAFKA_INSTALL=false
-      - FEATURES_ASYNC_ENABLED=true
-      - FEATURES_ASYNC_KAFKA_URL=kafka:9092
+      - ASYNC_MINION_URL=minion:38080
+      - KAFKA_BOOTSTRAP_SERVER=kafka:9092
+  apicurio-registry:
+    image: apicurio/apicurio-registry-mem:2.0.0.Final
+    ports:
+      - "8090:8080"
