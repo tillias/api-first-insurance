@@ -43,6 +43,14 @@
       <bpmn:outgoing>Flow_0hlfdua</bpmn:outgoing>
     </bpmn:eventBasedGateway>
     <bpmn:serviceTask id="Activity_0463e3j" name="assess claim">
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="method">get</camunda:inputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_0xxnrc8</bpmn:incoming>
       <bpmn:outgoing>Flow_05oeniv</bpmn:outgoing>
     </bpmn:serviceTask>
