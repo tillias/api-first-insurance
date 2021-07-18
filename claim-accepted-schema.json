@@ -16,7 +16,7 @@
   },
   "examples": [
     {
-      "claimId": "ABC-123",
+      "claimId": "CLAIM-123",
       "email": "john-doe@foo.com"
     }
   ]

@@ -23,7 +23,7 @@ paths:
       -
         examples:
           Example Claim:
-            value: '"ABC-123"'
+            value: CLAIM-123
         name: claimId
         description: Claim Id to be validated
         schema:
@@ -37,7 +37,7 @@ paths:
         -
           examples:
             Example assessment id:
-              value: '"ASSESS-123"'
+              value: ASSESS-123
           name: assessmentId
           description: Id of assessment
           schema:
@@ -57,9 +57,9 @@ paths:
                 type: string
               examples:
                 Pending status:
-                  value: '"Pending"'
+                  value: Pending
                 Running status:
-                  value: '"Running"'
+                  value: Running
           description: If assessment was found
       operationId: status
       summary: Check status of assessment
@@ -67,7 +67,7 @@ paths:
       -
         examples:
           Example assessment id:
-            value: '"ASS-123"'
+            value: ASSESS-123
         name: assessmentId
         description: Id of assessment
         schema:

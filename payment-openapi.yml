@@ -27,7 +27,7 @@ paths:
       -
         examples:
           Sample claimId:
-            value: '"ABC-123"'
+            value: ABC-123
         name: claimId
         schema:
           type: string
@@ -54,10 +54,11 @@ paths:
           content:
             application/json:
               schema:
-                type: string
+                type: object
               examples:
                 Transaction id:
-                  value: TRANSACTION-7f681d66-1767-4fa6-b6bc-208cd74f59a6
+                  value:
+                    transaction: TRANSACTION-7f681d66-1767-4fa6-b6bc-208cd74f59a6
           description: Returned if payment was successful
       operationId: executePayment
       summary: Performs payment
@@ -75,7 +76,7 @@ components:
           type: string
       example:
         currency: Euro
-        amount: '225.5'
+        amount: 225.5
     Payment:
       required:
         - insuranceId
@@ -96,4 +97,4 @@ components:
         claimId: ABC-123
         amount:
           currency: Euro
-          amount: '255.5'
+          amount: 255.5

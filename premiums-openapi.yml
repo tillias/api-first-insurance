@@ -4,10 +4,10 @@ info:
   version: 1.0.0
   description: |-
     Enables following capabilities:
-    - Checking if future rates for particular insurance holder should be changed
+    - Checking if future premiums for particular insurance holder should be changed
     - Change future insurance premiums
 paths:
-  /premiums/validate:
+  /premiums/calculate:
     post:
       requestBody:
         content:
@@ -29,25 +29,17 @@ paths:
               examples:
                 Increase rate change:
                   value:
-                    increase: true
                     currency: Euro
-                    amount: '15.5'
+                    amount: 15.5
                     claimId: ABC-123
                 Decrease rate change:
                   value:
-                    increase: false
                     currency: Euro
-                    ammount: '5.4'
-                    claimId: ABC-123
-                Rate not changed:
-                  value:
-                    increase: false
-                    currency: Euro
-                    ammount: '0.0'
+                    ammount: 5.4
                     claimId: ABC-123
           description: If validation was successful
       operationId: validatePremiums
-      summary: Checks if future rates for a particular insurance holder should be changed
+      summary: Checks if future premiums for a particular insurance holder should be changed
       description: |-
         If insurance claim if valid and accepted by insurer, it may affect future premiums.
         In most cases it is some increase in monthly payments.
@@ -61,20 +53,20 @@ paths:
             examples:
               Sample rate change:
                 value:
-                  increase: true
                   currency: Euro
-                  amount: '15.5'
-                  claimId: ABC-123
+                  amount: 15.5
+                  claimId: CLAIM-123
         required: true
       responses:
         '200':
           content:
             application/json:
               schema:
-                type: string
+                type: object
               examples:
                 New rate:
-                  value: '"100.3"'
+                  value:
+                    rate: 100.3
           description: if premiums are changed
       operationId: changePremiums
       summary: Adjust future premiums
@@ -82,15 +74,11 @@ components:
   schemas:
     RateChange:
       required:
-        - increase
         - currency
         - amount
         - claimId
       type: object
       properties:
-        increase:
-          description: true if future premiums will be bigger
-          type: boolean
         currency:
           type: string
         amount:
@@ -100,5 +88,5 @@ components:
       example:
         increase: true
         currency: Euro
-        amount: '15.5'
+        amount: 15.5
         claimId: ABC-123

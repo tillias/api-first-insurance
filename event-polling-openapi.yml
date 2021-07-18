@@ -15,7 +15,7 @@ paths:
               examples:
                 Sample request:
                   value:
-                    claimId: ABC-123
+                    claimId: CLAIM-123
                     email: john.doe@foo.com
           description: If event is available
         '404':
@@ -33,7 +33,7 @@ paths:
               examples:
                 Sample request:
                   value:
-                    claimId: ABC-123
+                    claimId: CLAIM-123
                     email: john.doe@foo.com
                     reason: Client provided invalid insurance policy number
           description: If event is available

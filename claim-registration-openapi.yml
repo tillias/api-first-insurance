@@ -13,7 +13,7 @@ paths:
             examples:
               Example Claim:
                 value:
-                  insuranceId: ABC-456
+                  insuranceId: INS-123
                   timestamp: '2018-02-10T09:30Z'
                   description: Some claim
         required: true
@@ -36,7 +36,7 @@ paths:
         -
           examples:
             Example Claim Id:
-              value: ABC-123
+              value: CLAIM-123
           name: claimId
           description: Id of a claim
           schema:
@@ -52,7 +52,7 @@ paths:
               examples:
                 Example Claim:
                   value:
-                    insuranceId: ABC-456
+                    insuranceId: INS-123
                     timestamp: '2018-02-10T09:30Z'
                     description: Some claim
           description: If Claim with given id is found
@@ -64,7 +64,7 @@ paths:
       -
         examples:
           Example Claim:
-            value: '"ABC-123"'
+            value: CLAIM-123
         name: claimId
         description: ''
         schema:
@@ -92,7 +92,7 @@ components:
           description: ''
           type: string
       example:
-        insuranceId: ABC-123
+        insuranceId: INS-123
         timestamp: '2018-02-10T09:30Z'
         description: My car was damaged because of flooding
     Registration:
